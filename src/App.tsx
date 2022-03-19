@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import CoinList from './CoinList';
 
 import { spacing } from './cssNumbers';
 
@@ -28,6 +29,7 @@ const App: React.FC = () => (
       <Content>
         A simple boilerplate to escape the bloat and unnecessary complexity of create-react-app
       </Content>
+      <CoinList />
     </Body>
   </Page>
 

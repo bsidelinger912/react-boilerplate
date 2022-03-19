@@ -7,4 +7,5 @@ module.exports = {
     '^.+\\.tsx?$': 'ts-jest',
   },
   testEnvironment: 'jsdom',
+  modulePathIgnorePatterns: ['fixtures.ts', 'data.ts'],
 };
