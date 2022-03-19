@@ -1,5 +1,4 @@
 # TODO
-- Add eslint/prettier
 - Add jest
 - Open browser on yarn start
 - Add styled components
