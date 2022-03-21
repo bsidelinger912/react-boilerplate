@@ -1,0 +1,5 @@
+photo api: https://picsum.photos/
+list: https://picsum.photos/v2/list?page=2&limit=100
+view images and paginate through them
+they can set width and height and number per page of images
+settings persist on page refresh
