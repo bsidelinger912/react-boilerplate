@@ -1,17 +1,18 @@
 import React from 'react';
 import { act, render } from '@testing-library/react';
 import CoinList from '..';
-import { fetchMock, sleep } from '../../__tests__/fixtures';
+import {
+  clearFetchMock, setFetchMock, sleep,
+} from '../../__tests__/fixtures';
 import { coinData } from '../../__tests__/data';
 
 describe('Coinlist', () => {
   beforeAll(() => {
-    (window.fetch as any) = () => null;
-    jest.spyOn(window, 'fetch').mockImplementation(() => fetchMock(coinData) as any);
+    setFetchMock(coinData);
   });
 
   afterAll(() => {
-    (window.fetch as any).mockClear();
+    clearFetchMock();
   });
 
   it('should render and load data', async () => {
@@ -24,6 +25,6 @@ describe('Coinlist', () => {
       rerender(<CoinList />);
     });
 
-    getAllByText(coinData.markets[0].symbol);
+    getAllByText(coinData[0].symbol);
   });
 });

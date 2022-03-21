@@ -1,12 +1,21 @@
 /* eslint-disable camelcase */
 import { useEffect, useState } from 'react';
 
-interface Data {
-  markets: {
-    symbol: string;
-    price: number;
-  }[];
-}
+export type DataItem = {
+  symbol: string;
+  baseAsset: string;
+  quoteAsset: string;
+  openPrice: string;
+  lowPrice: string;
+  highPrice: string;
+  lastPrice: string;
+  volume: string;
+  bidPrice: string;
+  askPrice: string;
+  at: number;
+};
+
+export type Data = DataItem[];
 
 interface UseCoins {
   loading: boolean;
@@ -14,7 +23,7 @@ interface UseCoins {
   data?: Data;
 }
 
-const coinsApiUrl = 'https://www.cryptingup.com/api/markets';
+const coinsApiUrl = 'https://api.wazirx.com/sapi/v1/tickers/24hr';
 
 export default function useCoins(): UseCoins {
   const [loading, setLoading] = useState(true);
@@ -25,7 +34,6 @@ export default function useCoins(): UseCoins {
     setLoading(true);
     try {
       const d = await fetch(coinsApiUrl).then((resp) => resp.json());
-
       setData(d);
     } catch (e: any) {
       setError(e.message);

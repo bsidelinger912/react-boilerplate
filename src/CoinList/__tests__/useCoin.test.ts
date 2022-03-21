@@ -1,12 +1,11 @@
 import { renderHook, act } from '@testing-library/react-hooks';
 import { coinData } from '../../__tests__/data';
-import { fetchMock, sleep } from '../../__tests__/fixtures';
+import { setFetchMock, sleep } from '../../__tests__/fixtures';
 import useCoins from '../useCoins';
 
 describe('renderHook', () => {
   beforeAll(() => {
-    (window.fetch as any) = () => null;
-    jest.spyOn(window, 'fetch').mockImplementation(() => fetchMock(coinData) as any);
+    setFetchMock(coinData);
   });
 
   afterAll(() => {
@@ -23,6 +22,6 @@ describe('renderHook', () => {
       rerender();
     });
 
-    expect(result.current.data).toBeTruthy();
+    expect(result.current.data).toEqual(coinData);
   });
 });
